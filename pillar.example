@@ -1,0 +1,7 @@
+# -*- mode: yaml -*-
+bookkeeper:
+  overrides:
+    pkg: bookkeeper
+    conf_file: /usr/local/etc/bookkeeper/bookkeeper.conf
+  config:
+    key: othervalue

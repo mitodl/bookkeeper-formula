@@ -1,0 +1,9 @@
+name: bookkeeper
+os: RedHat, CentOS, Ubuntu, Debian
+os_family: RedHat, Debian
+version: 201912
+release: 1
+summary: SaltStack formula for deploying and maintaining Apache Bookkeeper
+description: SaltStack formula for deploying and maintaining Apache Bookkeeper
+top_level_dir: bookkeeper
+recommended: 
