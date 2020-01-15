@@ -1,7 +1,10 @@
 # -*- mode: yaml -*-
 bookkeeper:
-  overrides:
-    pkg: bookkeeper
-    conf_file: /usr/local/etc/bookkeeper/bookkeeper.conf
+  conf_file: /usr/local/etc/bookkeeper/bookkeeper.conf
   config:
-    key: othervalue
+    extraServerComponents: 'org.apache.bookkeeper.stream.server.StreamStorageLifecycleComponent'  # Needed for Pulsar stateful functions
+    allowLoopback: 'true'
+    zkServers: localhost:2181
+    permittedStartupUsers: bookkeeper
+    ledgerDirectories: /var/opt/bookkeeper-ledger
+    journalDirectories: /var/opt/bookkeeper-journal

@@ -15,7 +15,7 @@ Vagrant.configure(2) do |config|
 
   
   config.vm.define "debian" do |debian|
-    debian.vm.box = "debian/stretch64"
+    debian.vm.box = "debian/buster64"
   end
 
   config.vm.define "centos" do |centos|
@@ -23,7 +23,7 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.define "ubuntu" do |ubuntu|
-    ubuntu.vm.box = "ubuntu/xenial64"
+    ubuntu.vm.box = "ubuntu/bionic64"
   end
   
 
@@ -88,12 +88,10 @@ Vagrant.configure(2) do |config|
   #run highstate
   config.vm.provision :salt do |salt|
     salt.minion_config = 'minion.conf'
-    salt.bootstrap_options = '-U -Z'
+    salt.bootstrap_options = '-U -x python3'
     salt.masterless = true
     salt.run_highstate = true
     salt.colorize = true
     salt.verbose = true
   end
-
-  
 end

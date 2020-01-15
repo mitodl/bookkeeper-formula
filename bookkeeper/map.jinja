@@ -1,14 +1,19 @@
 {% set bookkeeper = salt.grains.filter_by({
     'default': {
-        'pkgs': ['bookkeeper'],
-        'service': 'bookkeeper',
-        'conf_file': '/etc/bookkeeper/bookkeeper.conf',
+        'version': '4.10.0',
+        'service': 'bookie',
         'config': {
-            'key': 'value',
+            'zkServers': 'localhost:2181',
+            'ledgerDirectories': '/var/opt/bookkeeper-ledger',
+            'journalDirectories': '/var/opt/bookkeeper-journal'
         },
+        'user': 'bookkeeper',
+        'group': 'bookkeeper'
     },
     'Debian': {
+        'pkgs': ['default-jdk-headless']
     },
     'RedHat': {
+        'pkgs': ['java-latest-openjdk-headless']
     },
-}, grain='os_family', merge=salt.pillar.get('bookkeeper:overrides'), base='default') %}
+}, grain='os_family', merge=salt.pillar.get('bookkeeper'), base='default') %}
