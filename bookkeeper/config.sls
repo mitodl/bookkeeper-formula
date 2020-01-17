@@ -13,3 +13,5 @@ configure_bookkeeper:
     - watch_in:
       - service: bookkeeper_service_running
     - backup: minion
+    - user: {{ bookkeeper.user }}
+    - group: {{ bookkeeper.group }}

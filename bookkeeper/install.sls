@@ -29,10 +29,19 @@ install_bookkeeper_from_archive:
     - group: {{ bookkeeper.group }}
     - require_in:
         - service: bookkeeper_service_running
+  file.symlink:
+    - name: /opt/bookkeeper-server
+    - target: /opt/bookkeeper-server-{{ bookkeeper.version }}
+    - user: {{ bookkeeper.user }}
+    - group: {{ bookkeeper.group }}
+    - require:
+        - archive: install_bookkeeper_from_archive
+    - require_in:
+        - service: bookkeeper_service_running
 
 create_service_definition:
   file.managed:
-    - name: /etc/systemd/system/bookie.service
+    - name: /etc/systemd/system/{{ bookkeeper.service }}.service
     - source: salt://bookkeeper/templates/bookie.service.j2
     - template: jinja
     - require_in:

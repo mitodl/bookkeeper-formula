@@ -5,10 +5,10 @@ Requires=network-online.target
 After=network-online.target
 
 [Service]
-Environment=BK_HOME=/opt/bookkeeper-server-{{ bookkeeper.version }}
+Environment=BK_HOME=/opt/bookkeeper-server
 Environment=BOOKIE_LOG_DIR=/var/log/bookkeeper/
 Restart=on-failure
-ExecStart=/opt/bookkeeper-server-{{ bookkeeper.version }}/bin/bookkeeper bookie
+ExecStart=/opt/bookkeeper-server/bin/bookkeeper bookie
 KillSignal=SIGTERM
 User={{ bookkeeper.user }}
 Group={{ bookkeeper.group }}
