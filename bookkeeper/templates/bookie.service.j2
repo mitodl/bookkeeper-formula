@@ -1,0 +1,17 @@
+{% from "bookkeeper/map.jinja" import bookkeeper with context %}
+[Unit]
+Description=Bookkeeper bookie service
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Environment=BK_HOME=/opt/bookkeeper-server
+Environment=BOOKIE_LOG_DIR=/var/log/bookkeeper/
+Restart=on-failure
+ExecStart=/opt/bookkeeper-server/bin/bookkeeper bookie
+KillSignal=SIGTERM
+User={{ bookkeeper.user }}
+Group={{ bookkeeper.group }}
+
+[Install]
+WantedBy=multi-user.target

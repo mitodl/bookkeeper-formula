@@ -6,4 +6,3 @@ release: 1
 summary: SaltStack formula for deploying and maintaining Apache Bookkeeper
 description: SaltStack formula for deploying and maintaining Apache Bookkeeper
 top_level_dir: bookkeeper
-recommended: 

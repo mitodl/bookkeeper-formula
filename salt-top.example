@@ -1,6 +1,5 @@
 base:
   '*':
+    - zookeeper
     - bookkeeper
-    
     - bookkeeper.tests
-    

@@ -31,6 +31,10 @@ Handles installation of bookkeeper
 
 Handles configuration of bookkeeper
 
+Deployment Notes
+================
+
+The instance that you are deploying to should have a minimum of two disks so that the ``journalDirectory`` and ``ledgerDirectories`` settings can be pointed at different disks. This is for performance optimization purposes.
 
 Template
 ========
