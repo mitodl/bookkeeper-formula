@@ -1,7 +1,8 @@
 {% from "bookkeeper/map.jinja" import bookkeeper with context %}
 {% set mirror_data = 'https://www.apache.org/dyn/closer.cgi/bookkeeper?as_json=1'|http_query %}
-{% set mirror_paths = mirror_data.body|load_json %}
-{% set mirror_path = mirror_paths.preferred %}
+{% set mirror_urls = mirror_data.body|load_json %}
+{% set mirror_url = mirror_urls.preferred %}
+{% set mirror_backup = mirror_urls.backup[0] %}
 
 include:
   - .service
@@ -23,8 +24,8 @@ install_bookkeeper_dependencies:
 install_bookkeeper_from_archive:
   archive.extracted:
     - name: /opt/
-    - source: {{ mirror_path }}bookkeeper/bookkeeper-{{ bookkeeper.version }}/bookkeeper-server-{{ bookkeeper.version }}-bin.tar.gz
-    - source_hash: {{ mirror_paths.backup[0] }}bookkeeper/bookkeeper-{{ bookkeeper.version }}/bookkeeper-server-{{ bookkeeper.version }}-bin.tar.gz.sha512
+    - source: {{ mirror_url }}bookkeeper/bookkeeper-{{ bookkeeper.version }}/bookkeeper-server-{{ bookkeeper.version }}-bin.tar.gz
+    - source_hash: {{ mirror_backup }}bookkeeper/bookkeeper-{{ bookkeeper.version }}/bookkeeper-server-{{ bookkeeper.version }}-bin.tar.gz.sha512
     - user: {{ bookkeeper.user }}
     - group: {{ bookkeeper.group }}
     - require_in:
